@@ -1,0 +1,72 @@
+---
+import { Image } from "astro:assets";
+import menuIcon from "../assets/icons/menu.svg";
+import closeIcon from "../assets/icons/close.svg";
+
+const { lang = "en", controls, id } = Astro.props;
+---
+
+<button
+  type="button"
+  aria-expanded="false"
+  aria-controls={controls}
+  id={id}
+  class="header-menu-button"
+>
+  <Image src={menuIcon} alt="Menu icon" class="menu-icon" />
+  <Image src={closeIcon} alt="Close icon" class="close-icon" />
+  <label>{ lang === "en" ? "Menu" : "Dewislen" }</label>
+</button>
+
+<style>
+  .header-menu-button {
+    background: none;
+    border: none;
+    color: var(--color-primary-ocean-blue);
+    font-weight: 700;
+    cursor: pointer;
+    height: 72px;
+    padding: 0 var(--spacing-sm);
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-2xs);
+  }
+
+  .header-menu-button:hover {
+    box-shadow: inset 0 -4px 0 0 var(--color-primary-night-blue);
+  }
+
+  .header-menu-button[aria-expanded="true"] {
+    background-color: var(--color-tint-ocean-blue);
+  }
+
+  /* .header-menu-button[aria-expanded="true"] .close-icon {
+    display: inline;
+  } 
+
+  .header-menu-button[aria-expanded="true"] .menu-icon {
+    display: none;
+  } */
+
+  .close-icon {
+    display: none;
+  }
+
+  @media screen and (max-width: 46.5rem) {
+    
+  }
+
+  @media screen and (max-width: 30rem) {
+    label {
+      display: none;
+    }
+
+    .header-menu-button[aria-expanded="true"] .close-icon {
+      display: inline;
+    } 
+
+    .header-menu-button[aria-expanded="true"] .menu-icon {
+      display: none;
+    }
+   }
+</style>

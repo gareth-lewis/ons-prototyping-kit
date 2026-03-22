@@ -1,0 +1,14 @@
+---
+const { caption, title, size="page" } = Astro.props;
+---
+
+<div class={`heading`}>
+  { caption && <h2 class={`${size}-caption`}>{caption}</h2> }
+  <h1 class=`${size}-title`>{ title }</h1>
+</div>
+
+<style>
+  h2 {
+    color: var(--color-text-secondary);
+  }
+</style>

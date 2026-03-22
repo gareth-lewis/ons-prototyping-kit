@@ -1,0 +1,215 @@
+---
+import ui from '../i18n/navigationPanel.json';
+
+const { lang = "en", id, isVisible = false } = Astro.props;
+
+const t = ui[lang] || ui['en']; // Fallback to English if the specified language is not available
+
+const { pathname } = Astro.url;
+
+// Logic: If I'm in /en/, swap to /cy/. If I'm in /cy/, swap to /en/.
+const toggleHref = lang === "en" 
+  ? pathname.replace('/en/', '/cy/') 
+  : pathname.replace('/cy/', '/en/');
+---
+
+<div id={id} class="menu-panel" hidden={!isVisible}>
+  
+  <div class="container">
+
+    <div class="language-switcher">
+      <a href={ toggleHref } class="item-title">{ lang == "en" ? "Cymraeg" : "English" }</a>
+      <p>View a selection of content in Welsh</p>
+    </div>
+
+    <div class="top-section">
+      <nav class="priority-links">
+        <ul>
+          <li>
+            <a href="#" class="item-title">{ t.takingPartSurveyLabel }</a>
+            <p>{ t.takingPartSurveyDesc }</p>
+          </li>
+          <li>
+            <a href="#" class="item-title">{ t.releaseCalendarLabel }</a>
+            <p>{ t.releaseCalendarDesc }</p>
+          </li>
+          <li>
+            <a href="#" class="item-title">{ t.methodologyLabel }</a>
+            <p>{ t.methodologyDesc }</p>
+          </li>
+        </ul>
+      </nav>
+    </div>
+
+    <div class="bottom-section">
+
+      <nav class="themes-topics">
+
+        <div class="column">
+
+          <div class="theme">
+            <h2 class="item-title"><a href="#">{ t['theme.peoplePopulationAndCommunity'] }</a></h2>
+            <ul>
+              <li><a href="#">{ t['topic.armedForcesCommunity'] }</a></li>
+              <li><a href="#">{ t['topic.birthsDeathsAndMarriages'] }</a></li>
+              <li><a href="#">{ t['topic.crimeAndJustice'] }</a></li>
+              <li><a href="#">{ t['topic.culturalIdentity'] }</a></li>
+              <li><a href="#">{ t['topic.educationAndChildcare'] }</a></li>
+              <li><a href="#">{ t['topic.elections'] }</a></li>
+              <li><a href="#">{ t['topic.healthAndSocialCare'] }</a></li>
+              <li><a href="#">{ t['topic.householdCharacteristics'] }</a></li>
+              <li><a href="#">{ t['topic.housing'] }</a></li>
+              <li><a href="#">{ t['topic.leisureAndTourism'] }</a></li>
+              <li><a href="#">{ t['topic.personalAndHouseholdFinances'] }</a></li>
+              <li><a href="#">{ t['topic.populationAndMigration'] }</a></li>
+              <li><a href="#">{ t['topic.wellbeing'] }</a></li>
+            </ul>
+          </div>
+
+        </div> 
+
+        <div class="column">
+
+          <div class="theme">
+            <h2 class="item-title"><a href="#">{t['theme.businessIndustryAndTrade']}</a></h2>
+            <ul>
+              <li><a href="#">{t['topic.business']}</a></li>
+              <li><a href="#">{t['topic.changesToBusiness']}</a></li>
+              <li><a href="#">{t['topic.constructionIndustry']}</a></li>
+              <li><a href="#">{t['topic.internationalTrade']}</a></li>
+              <li><a href="#">{t['topic.itAndInternetIndustry']}</a></li>
+              <li><a href="#">{t['topic.manufacturingAndProductionIndustry']}</a></li>
+              <li><a href="#">{t['topic.retailIndustry']}</a></li>
+              <li><a href="#">{t['topic.tourismIndustry']}</a></li>
+            </ul>
+          </div>
+
+          <div class="theme">
+            <h2 class="item-title"><a href="#">{t['theme.employmentAndLabourMarket']}</a></h2>
+            <ul>
+              <li><a href="#">{t['topic.peopleInWork']}</a></li>
+              <li><a href="#">{t['topic.peopleNotInWork']}</a></li>
+            </ul>
+          </div>
+
+        </div>  
+
+        <div class="column">
+
+          <div class="theme">
+            <h2 class="item-title"><a href="#">{t['theme.economy']}</a></h2>
+            <ul>
+              <li><a href="#">{t['topic.economicOutputAndProductivity']}</a></li>
+              <li><a href="#">{t['topic.governmentPublicSectorAndTaxes']}</a></li>
+              <li><a href="#">{t['topic.grossValueAdded']}</a></li>
+              <li><a href="#">{t['topic.investmentsPensionsAndTrusts']}</a></li>
+              <li><a href="#">{t['topic.regionalAccounts']}</a></li>
+              <li><a href="#">{t['topic.environmentalAccounts']}</a></li>
+              <li><a href="#">{t['topic.grossDomesticProduct']}</a></li>
+              <li><a href="#">{t['topic.inflationAndPriceIndicies']}</a></li>
+              <li><a href="#">{t['topic.nationalAccounts']}</a></li>
+            </ul>
+          </div>
+
+        </div>   
+
+      </nav>
+
+    </div>
+
+  </div>
+
+</div>
+
+<style>
+  .menu-panel {
+    background-color: var(--color-tint-ocean-blue);
+    padding: var(--spacing-lg) var(--layout-desktop-outside-margin);
+    /* border-bottom: 4px solid var(--color-primary-ocean-blue); */
+  }
+
+  .menu-panel[hidden] {
+    display: none;
+  }
+
+  .container {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-lg);
+  }
+
+  .priority-links ul {
+    list-style: none;
+    padding: 0;
+    display: flex;
+    flex-direction: row;
+    gap: var(--layout-gutter);
+  }
+
+  .top-section, .language-switcher {
+    padding-bottom: var(--spacing-sm);
+    border-bottom: 1px solid var(--color-primary-ocean-blue);
+  }
+
+  .priority-links li {
+    width: 100%;
+  }
+
+  .themes-topics {
+    display: flex;
+    gap: var(--layout-gutter);
+  }
+
+  .column {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-lg);
+    width: 100%;
+  }
+
+  .theme {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-xs);
+  }
+
+  .theme ul {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-2xs);
+  }
+
+  ul {
+    list-style: none;
+    padding: 0
+  }
+
+  .language-switcher {
+    display: none;
+    padding-bottom: 
+  }
+
+  @media screen and (max-width: 46.5rem) {
+    .menu-panel {
+      padding: var(--spacing-lg) var(--layout-tablet-outside-margin);
+    }
+
+    .priority-links ul {
+      flex-direction: column;
+    }
+
+    .themes-topics {
+      flex-direction: column;
+    }
+
+    .language-switcher {
+      display: block;
+    }
+  }
+
+  @media screen and (max-width: 30rem) {
+    .menu-panel {
+      padding: var(--spacing-lg) var(--layout-mobile-outside-margin);
+    }
+  }
+</style>

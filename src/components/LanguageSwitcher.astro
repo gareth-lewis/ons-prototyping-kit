@@ -1,0 +1,28 @@
+---
+const { lang = "en" } = Astro.props;
+
+const { pathname } = Astro.url;
+
+// Logic: If I'm in /en/, swap to /cy/. If I'm in /cy/, swap to /en/.
+const toggleHref = lang === "en" 
+  ? pathname.replace('/en/', '/cy/') 
+  : pathname.replace('/cy/', '/en/');
+---
+
+<a href={ toggleHref } class="language-switcher">{ lang === "en" ? "Cymraeg" : "English" }</a>
+
+<style>
+  .language-switcher {
+    font-weight: 700;
+    height: 72px;
+    padding: 0 var(--spacing-sm);
+    display: flex;
+    align-items: center;
+  }
+
+  @media screen and (max-width: 46.5rem) {
+    .language-switcher {
+      display: none;
+    }
+  }
+</style>

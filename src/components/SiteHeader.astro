@@ -1,0 +1,145 @@
+---
+import { Image } from 'astro:assets';
+import onsLogoEnHorizontalColour from '../assets/images/ons-logo-en-horizontal-colour.svg';
+import onsLogoCyHorizontalColour from '../assets/images/ons-logo-cy-horizontal-colour.svg';
+import onsLogoEnStackedColour from '../assets/images/ons-logo-en-stacked-colour.svg';
+import onsLogoCyStackedColour from '../assets/images/ons-logo-cy-stacked-colour.svg';
+import NavigationPanel from '../components/NavigationPanel.astro';
+import GlobalSearch from '../components/GlobalSearch.astro';
+import MenuButton from '../components/MenuButton.astro';
+import SearchButton from '../components/SearchButton.astro';
+import LanguageSwitcher from '../components/LanguageSwitcher.astro';
+
+const { lang = "en" } = Astro.props;
+---
+
+<header>
+
+  <div class="header-main">
+    
+    <div class="container">
+
+      <a href="#">
+        { lang === "en" ? (
+          <>
+            <Image src={onsLogoEnHorizontalColour} alt="ONS logo" class="horizontal-logo" />
+            <Image src={onsLogoEnStackedColour} alt="ONS logo" class="stacked-logo" />
+          </>
+        ) : (
+          <>
+            <Image src={onsLogoCyHorizontalColour} alt="ONS logo" class="horizontal-logo" />
+            <Image src={onsLogoCyStackedColour} alt="ONS logo" class="stacked-logo" />
+          </>
+        )}
+      </a>
+  
+      <div class="actions">
+        <MenuButton lang={ lang } controls="header-menu" id="menu-toggle" />
+        <SearchButton controls="header-search" id="search-toggle" />
+        <LanguageSwitcher lang={ lang } />
+      </div>
+      
+    </div>
+
+  </div>
+    
+  <NavigationPanel lang={ lang } id="header-menu" />
+  <GlobalSearch lang={ lang } id="header-search" />
+
+</header>
+
+<script>
+  // Find every button on the page that has an 'aria-controls' attribute
+  const toggles = document.querySelectorAll('button[aria-controls]');
+
+  toggles.forEach(toggle => {
+
+    // Listen for a click on each specific button
+    toggle.addEventListener('click', () => {
+
+      // Get the ID of the panel this specific button is supposed to control
+      const targetId = toggle.getAttribute('aria-controls');
+
+      //Find that panel in the DOM using the ID we just grabbed
+      const targetPanel = document.getElementById(targetId);
+
+      // Check if the button is currently marked as "expanded" (true) or not
+      // Note: We compare to the string 'true' because ARIA attributes are strings
+      const isExpanded = toggle.getAttribute('aria-expanded') === 'true';
+
+      // 1. Reset the UI: Close all panels and reset all buttons to aria-expanded="false"
+      // This ensures that two panels (like Menu and Search) aren't open at the same time.
+      closeAll();
+
+      // 2. Toggle the specific panel:
+      // If the panel WAS closed (not expanded), we now open it.
+      if(!isExpanded) {
+        // Update the button for screen readers to show it is now open
+        toggle.setAttribute('aria-expanded', 'true');
+
+        // Remove the 'hidden' attribute so that the panel becomes visible and pushes content down
+        targetPanel.hidden = false;
+      }
+      // If it was open, closeAll() already handled hiding it, so we do nothing else.
+    });
+  });
+
+  function closeAll() {
+    toggles.forEach(t => {
+      // Reset every button to "collapsed"
+      t.setAttribute('aria-expanded', 'false');
+
+      // Find the panel associated with this specific button
+      const panel = document.getElementById(t.getAttribute('aria-controls'));
+
+      // Hide the panel from view and fron the accessibility tree
+      panel.hidden = true;
+    });
+  }
+</script>
+
+<style>
+  .header-main {
+    padding: 0 var(--layout-desktop-outside-margin);
+  }
+
+  .header-main .container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .actions {
+    display: flex;
+    align-items: center;
+  }
+
+  .stacked-logo {
+    display: none;
+  }
+
+  @media screen and (max-width: 46.5rem) {
+    .header-main {
+      padding: 0 var(--layout-tablet-outside-margin);
+    }
+
+    .stacked-logo {
+      display: inline;
+    }
+
+    .horizontal-logo {
+      display: none;
+    }
+
+    .language-switcher {
+      display: none;
+    }
+  }
+
+  @media screen and (max-width: 30rem) {
+    .header-main {
+       padding: 0 0 0 var(--layout-mobile-outside-margin);
+    }
+  }
+</style>

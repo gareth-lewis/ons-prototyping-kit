@@ -1,0 +1,149 @@
+---
+import { Image } from 'astro:assets';
+import oglLogo from '../assets/images/ogl-logo.svg';
+import onsLogoEnglishHorizontalMonochrome from '../assets/images/ons-logo-en-horizontal-monochrome.svg';
+import onsLogoCymraegHorizontalMonochrome from '../assets/images/ons-logo-cy-horizontal-monochrome.svg'
+import ui from '../i18n/footer.json';
+const { lang = "en" } = Astro.props;
+const t = ui[lang] || ui['en']; // Fallback to English if the specified language is not available
+
+---
+
+<footer>
+
+  <div class="container">
+
+    <section class="top-section">
+
+      <div class="column">
+        <h1 class="item-title">{ t['section.help'] }</h1>
+        <nav>
+          <ul>
+            <li><a href="#">{ t['help.accessibility'] }</a></li>
+            <li><a href="#">{ t['help.browsers'] }</a></li>
+            <li><a href="#">{ t['help.cookies'] }</a></li>
+            <li><a href="#">{ t['help.fairUsePolicy'] }</a></li>
+            <li><a href="#">{ t['help.privacyNotice'] }</a></li>
+            <li><a href="#">{ t['help.termsAndConditions'] }</a></li>
+          </ul>
+        </nav>
+      </div>
+
+      <div class="column">
+        <h1 class="item-title">{ t['section.about'] }</h1>
+        <nav>
+          <ul>
+            <li><a href="#">{ t['about.aboutONS'] }</a></li>
+            <li><a href="#">{ t['about.careers'] }</a></li>
+            <li><a href="#">{ t['about.contactUs'] }</a></li>
+            <li><a href="#">{ t['about.media'] }</a></li>
+            <li><a href="#">{ t['about.blog'] }</a></li>
+            <li><a href="#">{ t['about.freedomOfInformation'] }</a></li>
+          </ul>
+        </nav>
+      </div>
+
+      <div class="column">
+        <h1 class="item-title">{ t['section.connect'] }</h1>
+        <nav>
+          <ul>
+            <li><a href="#" class="external-link">{ t['connect.x'] }</a></li>
+            <li><a href="#" class="external-link">{ t['connect.instagram'] }</a></li>
+            <li><a href="#" class="external-link">{ t['connect.facebook'] }</a></li>
+            <li><a href="#" class="external-link">{ t['connect.linkedIn'] }</a></li>
+            <li><a href="#" class="external-link">{ t['connect.consultations'] }</a></li>
+            <li><a href="#" class="external-link">{ t['connect.discussionForums'] }</a></li>
+            <li><a href="#" class="external-link">{ t['connect.emailAlerts'] }</a></li>
+          </ul>
+        </nav>
+      </div>
+
+    </section>
+
+    <section class="bottom-section">
+
+      <div class="ogl-statement">
+        <Image src={oglLogo} alt="Open Government Licence logo" />
+        <p class="small">{ t['oglStatementPart1'] } <a href="#" class="external-link">Open Government Licence v3.0</a>{ t['oglStatementPart2'] }</p>
+      </div>
+      
+      { lang === "en" ? 
+        <>
+          <Image src={onsLogoEnglishHorizontalMonochrome} alt="ONS logo" />
+        </> :
+        <>
+          <Image src={onsLogoCymraegHorizontalMonochrome} alt="ONS logo" />
+        </>
+      }
+    </section>
+
+  </div>
+
+</footer>
+
+<style>
+  footer {
+    background-color: var(--color-greyscale-grey-5);
+    padding: 0 var(--layout-desktop-outside-margin);
+  }
+
+  a {
+    color: var(--color-link-dark);
+  }
+
+  nav ul {
+    list-style: none;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-2xs);
+  }
+
+  .top-section {
+    display: flex;
+    gap: 40px;
+    padding: var(--spacing-lg) 0;
+    border-bottom: 1px solid var(--color-border-primary);
+  }
+
+  .bottom-section {
+    padding: var(--spacing-lg) 0 var(--spacing-2xl);
+    display: flex;
+    gap: 40px;
+    flex-direction: column;
+  }
+
+  .ogl-statement {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-xs);
+  }
+
+  .column {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-xs);
+  }
+
+  @media screen and (max-width: 46.5rem) {
+    footer {
+      padding: 0 var(--layout-tablet-outside-margin);
+    }
+
+    .top-section {
+      flex-direction: column;
+    }
+
+    .ogl-statement {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+  }
+
+  @media screen and (max-width: 30rem) {
+    footer {
+      padding: 0 var(--layout-mobile-outside-margin);
+    }
+  }
+</style>

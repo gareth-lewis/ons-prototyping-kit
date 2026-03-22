@@ -1,0 +1,133 @@
+---
+import searchIcon from '../assets/icons/search.svg?raw';
+import ui from '../i18n/globalSearch.json';
+
+const { lang = "en", id, isVisible = false } = Astro.props;
+const t = ui[lang] || ui['en']; // Fallback to English if the specified language is not available
+---
+
+<div id={id} class="search-panel" hidden={!isVisible}>
+  <div class="container">
+
+    <div class="top-section">
+
+      <form role="search" class="search-container">
+        <label for="site-search" class="block-title">{ t.searchTheONS }</label>
+        
+        <div class="input-wrapper">
+          <input
+            type="search" 
+            id="site-search"
+            name="q"
+            class="search-input"
+          />
+          <button type="submit" class="search-submit" aria-label="Submit Search">
+            <Fragment set:html={searchIcon} />
+          </button>
+        </div>
+      </form>
+
+    </div>
+
+    <div class="bottom-section">
+      <label class="block-title">{ t.popularSearches }</label>
+      <ul>
+        <li><a href="#">{ t['link.costOfLiving'] }</a></li>
+        <li><a href="#">{ t['link.inflation'] }</a></li>
+        <li><a href="#">{ t['link.nhsWaitingTimes'] }</a></li>
+        <li><a href="#">{ t['link.wellbeing'] }</a></li>
+        <li><a href="#">{ t['link.babyNames'] }</a></li>
+      </ul>
+    </div>
+
+  </div>
+</div>
+
+<style>
+  .search-panel {
+    background-color: var(--color-tint-ocean-blue);
+    padding: var(--spacing-lg) var(--layout-desktop-outside-margin);
+  }
+
+  .search-panel[hidden] {
+    display: none;
+  }
+
+  .search-container {
+    width: 100%;
+    max-width: 100%; /* Ensures it doesn't break at the 320px minimum width */
+  }
+
+  .input-wrapper {
+    display: flex;
+    height: 56px;
+    align-items: stretch;
+    margin-top: var(--spacing-2xs);
+  }
+
+  .search-input {
+    flex-grow: 1; /* Takes up all available space */
+    height: 56px;
+    padding: 0 var(--spacing-xs);
+    border: 2px solid var(--color-primary-ocean-blue);
+    border-right: none; /* Merges visually with the button */
+    appearance: none;
+    width: 100%;
+    font-size: 1.125rem;
+  }
+
+  .search-submit {
+    width: 56px;
+    height: 56px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--color-primary-ocean-blue);
+    border: none;
+    cursor: pointer;
+  }
+
+  .search-submit :global(svg path) {
+    fill: var(--color-greyscale-white);
+  }
+
+  .top-section {
+    padding-bottom: var(--spacing-lg);
+    border-bottom: 1px solid var(--color-primary-ocean-blue);
+  }
+
+  .bottom-section {
+    padding-top: var(--spacing-lg);
+  }
+
+  .bottom-section ul {
+    margin-top: var(--spacing-xs);
+    list-style: none;
+    padding: 0;
+    display: flex;
+    flex-direction: row;
+    gap: var(--spacing-lg);
+  }
+
+  @media screen and (max-width: 46.5rem) {
+    .search-panel {
+      padding: var(--spacing-lg) var(--layout-tablet-outside-margin);
+    }
+
+    .bottom-section ul {
+      flex-direction: column;
+      gap: var(--spacing-2xs);
+    }
+  }
+
+  @media screen and (max-width: 30rem) {
+    .search-panel {
+      padding: var(--spacing-lg) var(--layout-mobile-outside-margin);
+    }
+
+    .bottom-section ul {
+      flex-direction: column;
+      gap: var(--spacing-2xs);
+    }
+  }
+</style>

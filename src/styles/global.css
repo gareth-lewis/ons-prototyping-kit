@@ -1,0 +1,255 @@
+:root {
+
+  /* Primary colours */
+  --color-primary-night-blue: #003C57;
+  --color-primary-spring-green: #A8BD3A;
+  --color-primary-aqua-teal: #00A3A6;
+  --color-primary-ocean-blue: #206095;
+  --color-primary-sky-blue: #27A0CC;
+
+  /* Supporting colours */
+  --color-supporting-leaf-green: #0F8243;
+  --color-supporting-ruby-red: #D0021B;
+  --color-supporting-jaffa-orange: #FA6401;
+  --color-supporting-sun-yellow: #FBC900;
+  --color-supporting-neon-yellow: #F0F762;
+
+  /* Vibrant colours */
+  --color-vibrant-ocean-blue: #1F84D8;
+  --color-vibrant-leaf-green: #10CA64;
+  --color-vibrant-ruby-red: #FD112D;
+  --color-vibrant-jaffa-orange: #FF7B24;
+
+  /* Tint colours */
+  --color-tint-ocean-blue: #E9EFF4;
+  --color-tint-leaf-green: #E7F3EC;
+  --color-tint-ruby-red: #FAE6E8;
+  --color-tint-jaffa-orange: #FFF0E6;
+
+  /* Greyscale colours */
+  --color-greyscale-black: #222222;
+  --color-greyscale-grey-100: #414042;
+  --color-greyscale-grey-75: #707071;
+  --color-greyscale-grey-35: #BCBCBD;
+  --color-greyscale-grey-15: #E2E2E3;
+  --color-greyscale-grey-5: #F5F5F6;
+  --color-greyscale-white: #FFFFFF;
+
+  /* Text colours */
+  --color-text-primary: var(--color-greyscale-black);
+  --color-text-secondary: var(--color-greyscale-grey-75);
+  --color-text-inverted: var(--color-greyscale-white);
+
+  /* Link colours */
+  --color-link-primary: var(--color-primary-ocean-blue);
+  --color-link-hover: var(--color-primary-night-blue);
+  --color-link-inverted: var(--color-greyscale-white);
+  --color-link-dark: var(--color-greyscale-black);
+
+  /* Border colours */
+  --color-border-primary: var(--color-greyscale-grey-35);
+
+  /* Banner colours */
+  --color-background-page: var(--color-greyscale-grey-5);
+  --color-background-theme: var(--color-primary-ocean-blue);
+  --color-background-topic: var(--color-tint-ocean-blue);
+
+  /* Spacing units */
+  --spacing-none: 0rem;           /* 0px */
+  --spacing-3xs: 0.25rem;         /* 4px */
+  --spacing-2xs: 0.5rem;          /* 8px */
+  --spacing-xs: 1rem;             /* 16px */
+  --spacing-sm: 1.5rem;           /* 24px */
+  --spacing-md: 2rem;             /* 32px */
+  --spacing-lg: 2.5rem;           /* 40px */
+  --spacing-xl: 3rem;             /* 48px */
+  --spacing-2xl: 4rem;            /* 64px */
+  --spacing-3xl: 5rem;            /* 80px */
+
+  /* Layout units */
+  --layout-container: 81.5rem;    /* 1304px */
+  --layout-desktop-outside-margin: 3rem;  /* 48px */
+  --layout-tablet-outside-margin: 2rem;  /* 32px */
+  --layout-mobile-outside-margin: 1.5rem;  /* 24px */
+  --layout-gutter: 2.5rem;          /* 40px */
+
+  /* Breakpoints */
+  --breakpoint-mobile: 30rem;     /* 480px */
+  --breakpoint-tablet: 46.5rem;   /* 744px */
+}
+
+/* 1. Use a more-intuitive box-sizing model */
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+/* 2. Remove default margin */
+* {
+  margin: 0;
+}
+
+/* 3. Allow percentage-based heights in the application */
+html, body {
+  height: 100%;
+}
+
+/* 4. Add accessible line-height & improve text rendering */
+body {
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+  min-width: 320px;
+}
+
+/* 5. Improve media defaults */
+img, picture, video, canvas, svg {
+  display: block;
+  max-width: 100%;
+}
+
+/* 6. Remove built-in form typography styles */
+input, button, textarea, select {
+  font: inherit;
+}
+
+/* 7. Avoid text overflows */
+p, h1, h2, h3, h4, h5, h6 {
+  overflow-wrap: break-word;
+}
+
+html {
+  font-size: 100%;
+}
+
+body {
+  color: var(--color-text-primary);
+  font-size: 1.125rem;
+  line-height: 1.75rem;
+  font-family: 'Open Sans', sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 400;
+  font-style: normal;
+  font-variation-settings: "wdth" 100;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-feature-settings: "ss03" 1;
+  font-variant-caps: normal;
+}
+
+.container {
+  max-width: var(--layout-container);
+  margin: 0 auto;
+}
+
+.content {
+  padding: 0 var(--layout-desktop-outside-margin);
+}
+
+@media screen and (max-width: 46.5rem) {
+  .content {
+    padding: 0 var(--layout-tablet-outside-margin);
+  }
+}
+
+@media screen and (max-width: 30rem) {
+  .content {
+    padding: 0 var(--layout-mobile-outside-margin);
+  }
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-weight: 700;
+}
+
+.page-title {
+  font-size: 3rem;
+  line-height: 4rem;
+  font-weight: 700;
+}
+
+.section-title {
+  font-size: 2.25rem;
+  line-height: 3.25rem;
+  font-weight: 700;
+}
+
+.subsection-title {
+  font-size: 1.625rem;
+  line-height: 2.5rem;
+  font-weight: 700;
+}
+
+.group-title {
+  font-size: 1.375rem;
+  line-height: 2rem;
+  font-weight: 700;
+}
+
+.block-title {
+  font-size: 1.25rem;
+  line-height: 2rem;
+  font-weight: 700;
+}
+
+.item-title {
+  font-size: 1.125rem;
+  line-height: 1.5rem;
+  font-weight: 700;
+}
+
+.page-caption, .section-caption, .subsection-caption, .group-caption, .block-caption, .item-caption {
+  font-weight: 700;
+}
+
+.page-caption {
+  font-size: 36px;
+  line-height: 48px;
+}
+
+.section-caption {
+  font-size: 26px;
+  line-height: 32px;
+}
+
+.subsection-caption {
+  font-size: 22px;
+  line-height: 32px;
+}
+
+.group-caption {
+  font-size: 20px;
+  line-height: 28px;
+}
+
+.block-caption {
+  font-size: 18px;
+  line-height: 24px;
+}
+
+.item-caption {
+  font-size: 14px;
+  line-height: 16px;
+}
+
+p.small {
+  font-size: 0.875rem;
+  line-height: 1.5rem;
+}
+
+a {
+  text-decoration-line: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 3px;
+  text-decoration-skip-ink: auto;
+  color: var(--color-link-primary);
+}
+
+a.external-link::after {
+  content: "";
+  background-image: url('../assets/icons/external-link.svg');
+  width: 16px;
+  height: 16px;
+  display: inline-block;
+  margin: 0 var(--spacing-3xs);
+  position: relative;
+  top: 3px;
+}

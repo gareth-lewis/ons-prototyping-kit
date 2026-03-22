@@ -1,0 +1,11 @@
+---
+import MinimalLayout from "./MinimalLayout.astro";
+import SiteHeader from "../components/SiteHeader.astro";
+import Footer from "../components/Footer.astro";
+---
+
+<MinimalLayout>
+  <SiteHeader />
+    <slot />
+  <Footer />
+</MinimalLayout>

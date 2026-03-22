@@ -1,0 +1,20 @@
+{
+  "en": {
+    "searchTheONS": "Search the ONS",
+    "popularSearches": "Popular searches",
+    "link.costOfLiving": "Cost of living",
+    "link.inflation": "Inflation",
+    "link.nhsWaitingTimes": "NHS waiting times",
+    "link.wellbeing": "Well-being",
+    "link.babyNames": "Baby names"
+  },
+  "cy": {
+    "searchTheONS": "Chwiliwch y SYG",
+    "popularSearches": "Chwiliadau poblogaidd",
+    "link.costOfLiving": "Costau byw",
+    "link.inflation": "Chwyddiant",
+    "link.nhsWaitingTimes": "Amseroedd aros y GIG",
+    "link.wellbeing": "Lles",
+    "link.babyNames": "Enwau babanod"
+  }
+}

@@ -1,0 +1,45 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import PageBanner from "../components/PageBanner.astro";
+import TableOfContents from "../components/TableOfContents.astro";
+
+const { caption, title, description } = Astro.props;
+---
+
+<BaseLayout>
+  <PageBanner
+    type="page"
+    caption={ caption }
+    title={ title }
+    description={ description }>
+  </PageBanner>
+
+  <main>
+    <div class="container">
+      <div class="layout">
+
+        <aside class="table-of-contents">
+          <TableOfContents content="" />
+        </aside>
+
+        <div class="page-content">
+          <slot />
+        </div>
+
+      </div>
+    </div>
+  </main>
+
+</BaseLayout>
+
+<style>
+  main {
+    margin: 64px 0 80px 0;
+  }
+
+  .layout {
+    display: grid;
+    gap: var(--layout-gutter);
+    grid-template-columns: 1fr 2fr;
+  }
+</style>
