@@ -1,8 +1,16 @@
 {
-  "name": "ons-prototyping-kit",
-  "version": "1.0.0",
+  "name": "@gareth-lewis/ons-prototyping-kit",
+  "version": "0.0.1",
   "description": "",
   "main": "index.js",
+  "exports": {
+    ".": "./src/index.js",
+    "./styles.css": "./src/styles/global.css"
+  },
+  "files": [
+    "src",
+    "README.md"
+  ],
   "scripts": {
     "dev": "astro dev",
     "build": "astro build",
