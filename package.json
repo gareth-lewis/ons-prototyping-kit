@@ -1,10 +1,11 @@
 {
   "name": "@gareth-lewis/ons-prototyping-kit",
   "version": "0.0.1",
-  "description": "",
-  "main": "index.js",
+  "description": "A shared library of ONS prototyping components",
+  "type": "module",
+  "main": "./src/index.ts",
   "exports": {
-    ".": "./src/index.js",
+    ".": "./src/index.ts",
     "./styles.css": "./src/styles/global.css"
   },
   "files": [
@@ -17,9 +18,8 @@
     "preview": "astro preview"
   },
   "keywords": [],
-  "author": "",
+  "author": "Gareth Lewis",
   "license": "ISC",
-  "type": "commonjs",
   "dependencies": {
     "astro": "^6.0.8"
   }
