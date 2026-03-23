@@ -1,4 +1,9 @@
 export { default as SiteHeader } from './components/SiteHeader.astro';
+export { default as MenuButton } from './components/MenuButton.astro';
+export { default as SearchButton } from './components/SearchButton.astro';
+export { default as LanguageSwitcher } from './components/LanguageSwitcher.astro';
+export { default as NavigationPanel } from './components/NavigationPanel.astro';
+export { default as GlobalSearch } from './components/GlobalSearch.astro';
 export { default as Footer } from './components/Footer.astro';
 export { default as PageBanner } from './components/PageBanner.astro';
 export { default as Heading } from './components/Heading.astro';
