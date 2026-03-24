@@ -1,11 +1,12 @@
 ---
+import type { MarkdownHeading } from "astro";
 import BaseLayout from "../layouts/BaseLayout.astro";
 import PageBanner from "../components/PageBanner.astro";
 import TableOfContents from "../components/TableOfContents.astro";
 
 const { caption, title, description, metadata, headings = [] } = Astro.props;
 
-const sections = headings.filter(h => h.depth === 2);
+const sections = headings.filter((h: MarkdownHeading) => h.depth === 2);
 ---
 
 <BaseLayout>
