@@ -3,7 +3,9 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 import PageBanner from "../components/PageBanner.astro";
 import TableOfContents from "../components/TableOfContents.astro";
 
-const { caption, title, description, sections = [] } = Astro.props;
+const { caption, title, description, metadata, sections = [] } = Astro.props;
+
+const h2s = sections.filter(h => h.depth === 2);
 ---
 
 <BaseLayout>
@@ -11,7 +13,8 @@ const { caption, title, description, sections = [] } = Astro.props;
     type="page"
     caption={ caption }
     title={ title }
-    description={ description }>
+    description={ description }
+    metadata={ metadata }>
   </PageBanner>
 
   <main>
