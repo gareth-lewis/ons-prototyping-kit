@@ -3,7 +3,7 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 import PageBanner from "../components/PageBanner.astro";
 import TableOfContents from "../components/TableOfContents.astro";
 
-const { caption, title, description } = Astro.props;
+const { caption, title, description, sections = [] } = Astro.props;
 ---
 
 <BaseLayout>
@@ -19,7 +19,7 @@ const { caption, title, description } = Astro.props;
       <div class="layout">
 
         <aside class="table-of-contents">
-          <TableOfContents content="" />
+          <TableOfContents sections={ sections } />
         </aside>
 
         <div class="page-content">
