@@ -1,12 +1,12 @@
 ---
-const { headings = [] } = Astro.props;
+const { sections = [] } = Astro.props;
 ---
 
 <nav class="table-of-contents">
   <h2>Contents</h2>
 
   <ul>
-    { headings.map((h) => (
+    { sections.map((h) => (
       <li><a href={`#${h.slug}`}>{ h.text }</a></li>
     ))}
   </ul>
