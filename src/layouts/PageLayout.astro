@@ -4,9 +4,9 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 import PageBanner from "../components/PageBanner.astro";
 import TableOfContents from "../components/TableOfContents.astro";
 
-const { caption, title, description, metadata, headings = [] } = Astro.props;
+const { caption, title, description, metadata, sections = [] } = Astro.props;
 
-const sections = headings.filter((h: MarkdownHeading) => h.depth === 2);
+const toc = sections.filter((h: MarkdownHeading) => h.depth === 2);
 ---
 
 <BaseLayout>
@@ -23,7 +23,7 @@ const sections = headings.filter((h: MarkdownHeading) => h.depth === 2);
       <div class="layout">
 
         <aside class="table-of-contents">
-          <TableOfContents sections={ sections } />
+          <TableOfContents sections={ toc } />
         </aside>
 
         <div class="page-content">
