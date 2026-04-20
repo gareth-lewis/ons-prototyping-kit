@@ -1,0 +1,12 @@
+---
+const { title, link, releaseDate, contentType, description } = Astro.props;
+---
+
+<div class="document-list">
+  <a href={ link }>{ title }</a>
+  <p>
+    <span class="release-date"><strong>Released:</strong> { releaseDate }</span>
+    <span class="content-type">{ contentType }</span>
+  </p>
+  <p>{ description }</p>
+</div>

@@ -1,0 +1,14 @@
+---
+const { filename, filetype, filesize, fileUrl } = Astro.props;
+---
+
+<div class="file-download">
+  <span>icon</span>
+
+  <div class="file-information">
+    <p>{ filename }</p>
+    <p>{ filetype } ({ filesize })</p>
+  </div>
+
+  <a href={ fileUrl }>Download file</a>
+</div>

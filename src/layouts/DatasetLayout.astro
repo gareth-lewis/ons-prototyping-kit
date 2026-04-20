@@ -1,0 +1,189 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import PageBanner from "../components/PageBanner.astro";
+import TableOfContents from "../components/TableOfContents.astro";
+import ContactDetails from "../components/ContactDetails.astro";
+import DocumentList from "../components/DocumentList.astro";
+import FileDownload from "../components/FileDownload.astro";
+
+const { title, description } = Astro.props;
+
+const metadata = "Last updated: " + new Date().toLocaleDateString("en-US", {
+  year: "numeric",
+  month: "long",
+  day: "numeric"
+});
+
+const toc = ["Overview", "Data Dictionary", "Usage Notes", "License", "Citations"];
+---
+
+<BaseLayout>
+  <PageBanner
+    type="page"
+    caption="Dataset"
+    title={ title }
+    description={ description }
+    metadata={ metadata }>
+  </PageBanner>
+
+  <main>
+    <div class="container">
+
+      <div class="edition-list">
+        <p>This will show all the different editions of the dataset.</p>
+      </div>
+
+      <div class="layout">
+
+        <aside class="table-of-contents">
+          <TableOfContents sections={ toc } />
+        </aside>
+
+        <div class="page-content">
+          
+          <section class="edition-metadata">
+            <h2 class="section-title">Edition title</h2>
+
+            <dl>
+              <dt>Release date</dt>
+              <dd>1 January 2024</dd>
+
+              <dt>Next release</dt>
+              <dd>2 January 2024</dd>
+
+              <dt>Contact</dt>
+              <dd>Gareth Lewis</dd>
+
+              <dt>Version</dt>
+              <dd>1 of 1</dd>
+            </dl>
+          </section>
+
+          <section class="get-the-data">
+            <h2 class="section-title">Get the data</h2>
+            <p>Download the data, released on 1 January 2024, in the following formats:</p>
+
+            <FileDownload
+              filename="dataset-title.csv"
+              filetype="CSV"
+              filesize="10MB"
+              fileUrl="#"
+            />
+
+            <FileDownload
+              filename="dataset-title.csv"
+              filetype="CSV"
+              filesize="10MB"
+              fileUrl="#"
+            />
+
+            <FileDownload
+              filename="dataset-title.csv"
+              filetype="CSV"
+              filesize="10MB"
+              fileUrl="#"
+            />
+
+            <FileDownload
+              filename="dataset-title.csv"
+              filetype="CSV"
+              filesize="10MB"
+              fileUrl="#"
+            />
+          </section>
+
+          <section class="important-notes-and-usage-information">
+            <h2 class="section-title">Important notes and usage information</h2>
+
+            <p>
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec a diam lectus. Sed sit amet ipsum mauris. Maecenas congue ligula ac quam viverra nec consectetur ante hendrerit. Donec et mollis dolor. Praesent et diam eget libero egestas mattis sit amet vitae augue. Nam tincidunt congue enim, ut porta lorem lacinia consectetur.
+            </p>
+          </section>
+
+          <section class="related-content">
+            <h2 class="section-title">Related content</h2>
+
+            <DocumentList
+              title="Related document title"
+              link="#"
+              releaseDate="1 January 2024"
+              contentType="Data quality report"
+              description="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec a diam lectus. Sed sit amet ipsum mauris."
+            />
+
+            <DocumentList
+              title="Related document title"
+              link="#"
+              releaseDate="1 January 2024"
+              contentType="Methodology article"
+              description="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec a diam lectus. Sed sit amet ipsum mauris."
+            />
+
+            <DocumentList
+              title="Related document title"
+              link="#"
+              releaseDate="1 January 2024"
+              contentType="Data quality report"
+              description="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec a diam lectus. Sed sit amet ipsum mauris."
+            />
+          </section>
+
+          <section class="version-history">
+            <h2 class="section-title">Version history</h2>
+
+            <table>
+              <thead>
+                <tr>
+                  <th>Version</th>
+                  <th>Release date</th>
+                  <th>Reason for update</th>
+                </tr>
+              </thead>
+
+              <tbody>
+                <tr>
+                  <td><a href="#">3</a></td>
+                  <td><a href="#">October 2025 09:30am</a></td>
+                  <td>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur rutrum augue vitae libero efficitur accumsan.</td>
+                </tr>
+
+                <tr>
+                  <td><a href="#">2</a></td>
+                  <td><a href="#">October 2025 09:30am</a></td>
+                  <td>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur rutrum augue vitae libero efficitur accumsan.</td>
+                </tr>
+
+                <tr>
+                  <td><a href="#">1</a></td>
+                  <td><a href="#">October 2025 09:30am</a></td>
+                  <td>Initial release</td>
+                </tr>
+              </tbody>
+            </table>
+          </section>
+
+          <ContactDetails
+            team="Team name"
+            email="team@ons.gov.uk"
+            telephone="01234 567890"
+          />
+
+        </div>
+
+      </div>
+    </div>
+  </main>
+
+</BaseLayout>
+
+<style>
+  main {
+    margin: 64px 0 80px 0;
+  }
+
+  .layout {
+    display: grid;
+    gap: var(--layout-gutter);
+    grid-template-columns: 1fr 2fr;
+  }
+</style>

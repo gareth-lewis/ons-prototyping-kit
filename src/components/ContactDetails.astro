@@ -1,0 +1,30 @@
+---
+const { team, email, telephone } = Astro.props;
+---
+
+<div class="contact-details">
+  <h2 class="section-title">Contact details</h2>
+
+  <dl>
+    <dt>Team</dt>
+    <dd>{ team }</dd>
+
+    <dt>Email</dt>
+    <dd><a href={`mailto:${ email }`}>{ email }</a></dd>
+
+    <dt>Telephone</dt>
+    <dd><a href={`tel:${ telephone }`}>{ telephone }</a></dd>
+  </dl>
+</div>
+
+<style>
+  dl {
+    display: grid;
+    gap: var(--spacing-2xs) var(--spacing-lg);
+    grid-template-columns: max-content 1fr;
+  }
+
+  dt {
+    font-weight: 700;
+  }
+</style>
