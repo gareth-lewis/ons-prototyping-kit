@@ -3,10 +3,32 @@ const { title, link, releaseDate, contentType, description } = Astro.props;
 ---
 
 <div class="document-list">
-  <a href={ link }>{ title }</a>
-  <p>
+  <a class="group-title" href={ link }>{ title }</a>
+  <p class="release-date-type">
     <span class="release-date"><strong>Released:</strong> { releaseDate }</span>
     <span class="content-type">{ contentType }</span>
   </p>
   <p>{ description }</p>
 </div>
+
+<style>
+  .document-list {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-xs);
+  }
+
+  .release-date-type {
+    display: flex;
+    gap: var(--spacing-lg);
+  }
+
+  .content-type {
+    font-weight: 700;
+  }
+
+  p {
+    margin: 0;
+    max-width: var(--layout-text-width);
+  }
+</style>

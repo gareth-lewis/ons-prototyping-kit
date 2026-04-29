@@ -66,12 +66,16 @@
   --spacing-2xl: 4rem;            /* 64px */
   --spacing-3xl: 5rem;            /* 80px */
 
+  --spacing-content-subsection-gap: var(--spacing-md);
+
   /* Layout units */
   --layout-container: 81.5rem;    /* 1304px */
   --layout-desktop-outside-margin: 3rem;  /* 48px */
   --layout-tablet-outside-margin: 2rem;  /* 32px */
   --layout-mobile-outside-margin: 1.5rem;  /* 24px */
   --layout-gutter: 2.5rem;          /* 40px */
+  --layout-content-width: 53.5rem;     /* 856px */
+  --layout-text-width: 39.5rem;        /* 632px */
 
   /* Breakpoints */
   --breakpoint-mobile: 30rem;     /* 480px */
@@ -246,7 +250,7 @@ p.small {
 a {
   text-decoration-line: underline;
   text-decoration-thickness: 1px;
-  text-underline-offset: 3px;
+  text-underline-offset: 6px;
   text-decoration-skip-ink: auto;
   color: var(--color-link-primary);
 }
@@ -260,4 +264,11 @@ a.external-link::after {
   margin: 0 var(--spacing-3xs);
   position: relative;
   top: 3px;
+}
+
+a:focus {
+  background-color: var(--color-supporting-sun-yellow);
+  text-underline-offset: 2px;
+  text-decoration-thickness: 4px;
+  color: var(--color-greyscale-black);
 }

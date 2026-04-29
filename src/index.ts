@@ -12,3 +12,4 @@ export { default as MinimalLayout } from './layouts/MinimalLayout.astro';
 export { default as BaseLayout } from './layouts/BaseLayout.astro';
 export { default as TopicLayout } from './layouts/TopicLayout.astro';
 export { default as PageLayout } from './layouts/PageLayout.astro';
+export { default as Figure } from './components/Figure.astro';

@@ -2,6 +2,7 @@
 import BaseLayout from "../layouts/BaseLayout.astro";
 import PageBanner from "../components/PageBanner.astro";
 import TableOfContents from "../components/TableOfContents.astro";
+import EditionSelector from "../components/EditionSelector.astro";
 import ContactDetails from "../components/ContactDetails.astro";
 import DocumentList from "../components/DocumentList.astro";
 import FileDownload from "../components/FileDownload.astro";
@@ -29,9 +30,7 @@ const toc = ["Overview", "Data Dictionary", "Usage Notes", "License", "Citations
   <main>
     <div class="container">
 
-      <div class="edition-list">
-        <p>This will show all the different editions of the dataset.</p>
-      </div>
+      <EditionSelector></EditionSelector>
 
       <div class="layout">
 
@@ -44,7 +43,7 @@ const toc = ["Overview", "Data Dictionary", "Usage Notes", "License", "Citations
           <section class="edition-metadata">
             <h2 class="section-title">Edition title</h2>
 
-            <dl>
+            <dl class="metadata-list">
               <dt>Release date</dt>
               <dd>1 January 2024</dd>
 
@@ -63,33 +62,31 @@ const toc = ["Overview", "Data Dictionary", "Usage Notes", "License", "Citations
             <h2 class="section-title">Get the data</h2>
             <p>Download the data, released on 1 January 2024, in the following formats:</p>
 
-            <FileDownload
-              filename="dataset-title.csv"
-              filetype="CSV"
-              filesize="10MB"
-              fileUrl="#"
-            />
-
-            <FileDownload
-              filename="dataset-title.csv"
-              filetype="CSV"
-              filesize="10MB"
-              fileUrl="#"
-            />
-
-            <FileDownload
-              filename="dataset-title.csv"
-              filetype="CSV"
-              filesize="10MB"
-              fileUrl="#"
-            />
-
-            <FileDownload
-              filename="dataset-title.csv"
-              filetype="CSV"
-              filesize="10MB"
-              fileUrl="#"
-            />
+            <div class="file-download-list">
+              <FileDownload
+                filetype="XLSX"
+                filename="April-to-June-2025-edition.xlsx"
+                filedescription="Office Open XML file"
+                filesize="10MB"
+                fileUrl="#"
+              />
+              
+              <FileDownload
+                filetype="TXT"
+                filename="April-to-June-2025-edition.txt"
+                filedescription="Unicode plain text file"
+                filesize="10MB"
+                fileUrl="#"
+              />
+              
+              <FileDownload
+                filetype="CSV"
+                filename="April-to-June-2025-edition.csv"
+                filedescription="Comma-separated values file"
+                filesize="10MB"
+                fileUrl="#"
+              />
+            </div>
           </section>
 
           <section class="important-notes-and-usage-information">
@@ -103,29 +100,32 @@ const toc = ["Overview", "Data Dictionary", "Usage Notes", "License", "Citations
           <section class="related-content">
             <h2 class="section-title">Related content</h2>
 
-            <DocumentList
-              title="Related document title"
-              link="#"
-              releaseDate="1 January 2024"
-              contentType="Data quality report"
-              description="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec a diam lectus. Sed sit amet ipsum mauris."
-            />
+            <div class="related-content-list">
 
-            <DocumentList
-              title="Related document title"
-              link="#"
-              releaseDate="1 January 2024"
-              contentType="Methodology article"
-              description="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec a diam lectus. Sed sit amet ipsum mauris."
-            />
-
-            <DocumentList
-              title="Related document title"
-              link="#"
-              releaseDate="1 January 2024"
-              contentType="Data quality report"
-              description="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec a diam lectus. Sed sit amet ipsum mauris."
-            />
+              <DocumentList
+                title="Related document title"
+                link="#"
+                releaseDate="1 January 2024"
+                contentType="Data quality report"
+                description="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec a diam lectus. Sed sit amet ipsum mauris."
+              />
+              
+              <DocumentList
+                title="Related document title"
+                link="#"
+                releaseDate="1 January 2024"
+                contentType="Methodology article"
+                description="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec a diam lectus. Sed sit amet ipsum mauris."
+              />
+              
+              <DocumentList
+                title="Related document title"
+                link="#"
+                releaseDate="1 January 2024"
+                contentType="Data quality report"
+                description="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec a diam lectus. Sed sit amet ipsum mauris."
+              />
+            </div>
           </section>
 
           <section class="version-history">
@@ -185,5 +185,43 @@ const toc = ["Overview", "Data Dictionary", "Usage Notes", "License", "Citations
     display: grid;
     gap: var(--layout-gutter);
     grid-template-columns: 1fr 2fr;
+    margin-top: var(--spacing-content-subsection-gap);
+  }
+
+  .metadata-list {
+    display: grid;
+    gap: var(--spacing-2xs) var(--spacing-lg);
+    grid-template-columns: max-content 1fr;
+  }
+
+  .metadata-list dt {
+    font-weight: 700;
+  }
+
+  .edition-metadata {
+    padding-bottom: var(--spacing-content-subsection-gap);
+    border-bottom: 1px solid var(--color-border-primary);
+  }
+
+  .file-download-list {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  .related-content-list {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-lg);
+  }
+
+  p {
+    max-width: var(--layout-text-width);
+  }
+
+  .page-content {
+    display: flex;
+    flex-direction: column;
+    gap: 64px;
   }
 </style>

@@ -1,0 +1,16 @@
+---
+const { label } = Astro.props;
+---
+
+<details>
+  <summary>{ label }</summary>
+  <slot></slot>
+</details>
+
+<style>
+  summary {
+    font-weight: 700;
+    color: var(--color-link-primary);
+    cursor: pointer;
+  }
+</style>

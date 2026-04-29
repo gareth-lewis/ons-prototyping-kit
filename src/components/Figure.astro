@@ -1,0 +1,53 @@
+---
+import Heading from '../components/Heading.astro';
+import Details from '../components/Details.astro';
+
+const { caption, title, subtitle, source, border = false } = Astro.props;
+---
+
+<figure class={`figure-container ${border ? "figure-border" : ""}`}>
+  <div class="figure-intro">
+    <Heading
+      caption={ caption }
+      title={ title }
+      size="block"
+    />
+    <figcaption class="subtitle">{ subtitle }</figcaption>
+  </div>
+
+  <slot name="visualisation" />
+  
+  <p class="source small">{ source }</p>
+
+  <Details label="Footnotes">
+    <slot name="footnotes" />
+  </Details>
+
+  <Details label="Downloads">
+    <slot name="downloads" />
+  </Details>
+</figure>
+
+<style>
+  figure {
+    max-width: var(--layout-content-width);
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-sm);
+  }
+
+  .figure-intro {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-2xs);
+  }
+
+  .figure-border {
+    border: 1px solid var(--color-border-primary);
+    padding: var(--spacing-sm);
+  }
+
+  .source {
+    color: var(--color-text-secondary);
+  }
+</style>

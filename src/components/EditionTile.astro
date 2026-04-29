@@ -1,0 +1,65 @@
+---
+const { label, edition, releaseDate, accredited = false, active = false } = Astro.props;
+---
+
+<div class={`edition-tile ${active ? "active" : ""}`}>
+  <div class="edition-information">
+    <p class="edition-label item-caption">{label}</p>
+    <p class="edition-title">{edition}</p>
+    <p class="edition-release-date">Released on {releaseDate}</p>
+  </div>
+  { accredited && (
+    <p class="edition-accredited small">
+      <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M14.8497 3.57997L14.0797 2.80997C13.8697 2.59997 13.5297 2.59997 13.3197 2.80997L5.61969 10.52L2.68969 7.57997C2.47969 7.36997 2.13969 7.36997 1.91969 7.57997L1.14969 8.34997C0.939688 8.55997 0.939688 8.89997 1.14969 9.11997L5.21969 13.19C5.42969 13.4 5.76969 13.4 5.97969 13.19L14.8497 4.32997C15.0597 4.11997 15.0597 3.77997 14.8497 3.57997Z" fill="white"/>
+      </svg>
+      Official statistics accredited
+    </p>
+  )}
+</div>
+
+<style>
+  .edition-tile {
+    border: 1px solid var(--color-border-primary);
+  }
+
+  .edition-tile:hover {
+    border: 1px solid var(--color-greyscale-black);
+    cursor: pointer;
+  }
+
+  .edition-tile.active {
+    background-color: var(--color-tint-ocean-blue);
+    border: 1px solid var(--color-primary-ocean-blue);
+  }
+
+  .edition-information {
+    display: flex;
+    flex-direction: column;
+    padding: var(--spacing-sm);
+  }
+
+  .edition-label {
+    color: var(--color-text-secondary);
+  }
+
+  .edition-title {
+    margin: 0;
+    font-weight: 700;
+    margin-bottom: 16px;
+  }
+
+  .edition-release-date {
+    font-size: 14px;
+    line-height: 20px;
+  }
+
+  .edition-accredited {
+    background-color: var(--color-primary-ocean-blue);
+    color: var(--color-text-inverted);
+    padding: var(--spacing-2xs) var(--spacing-xs);
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-2xs);
+  }
+</style>
