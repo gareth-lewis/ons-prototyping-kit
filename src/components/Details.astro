@@ -1,10 +1,20 @@
 ---
+import Icon from "../components/Icon.astro";
+
 const { label } = Astro.props;
 ---
 
 <details>
-  <summary>{ label }</summary>
-  <slot></slot>
+  <summary>
+    <span class="summary-content">
+      <Icon name="chevronRight" size="m" />
+      { label }
+    </span>
+  </summary>
+
+  <div class="details-content">
+    <slot />
+  </div>
 </details>
 
 <style>
@@ -12,5 +22,23 @@ const { label } = Astro.props;
     font-weight: 700;
     color: var(--color-link-primary);
     cursor: pointer;
+    list-style: none;
+    display: inline-flex;
+    align-items: center;
+  }
+
+  summary::-webkit-details-marker {
+    display: none;
+  }
+
+  .summary-content {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--spacing-2xs);
+  }
+
+  /* Target the SVG inside the Icon component */
+  details[open] summary :global(svg) {
+    transform: rotate(90deg);
   }
 </style>
