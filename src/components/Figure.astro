@@ -3,14 +3,14 @@ import Heading from '../components/Heading.astro';
 import Details from '../components/Details.astro';
 import Icon from './Icon.astro';
 
-const { caption, title, subtitle, source, border = false } = Astro.props;
+const { figureNumber, title, subtitle, source, border = false } = Astro.props;
 ---
 
 <figure class={`figure-container ${border ? "figure-border" : ""}`}>
 
   <div class="figure-intro">
     <Heading
-      caption={ caption }
+      caption={ figureNumber ? `Figure ${figureNumber}` : undefined }
       title={ title }
       size="block"
     />
@@ -25,7 +25,7 @@ const { caption, title, subtitle, source, border = false } = Astro.props;
     <slot name="footnotes" />
   </Details>
 
-  <Details label="Downloads">
+  <Details label={`Download Figure ${figureNumber} data`}>
     <slot name="downloads" />
   </Details>
 </figure>
