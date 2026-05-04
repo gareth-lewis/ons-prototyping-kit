@@ -37,6 +37,10 @@ const { label } = Astro.props;
     gap: var(--spacing-2xs);
   }
 
+  .details-content {
+    margin-left: var(--spacing-md);
+  }
+
   /* Target the SVG inside the Icon component */
   details[open] summary :global(svg) {
     transform: rotate(90deg);
