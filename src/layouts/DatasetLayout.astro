@@ -7,13 +7,16 @@ import ContactDetails from "../components/ContactDetails.astro";
 import DocumentList from "../components/DocumentList.astro";
 import FileDownload from "../components/FileDownload.astro";
 
-const { title, description } = Astro.props;
-
-const metadata = "Last updated: " + new Date().toLocaleDateString("en-US", {
-  year: "numeric",
-  month: "long",
-  day: "numeric"
-});
+const {
+  datasetTitle,
+  description,
+  editionTitle,
+  metadata,
+  dataFiles,
+  relatedContent,
+  versionHistory,
+  contactDetails,
+} = Astro.props;
 
 const toc = ["Overview", "Data Dictionary", "Usage Notes", "License", "Citations"];
 ---
@@ -22,15 +25,15 @@ const toc = ["Overview", "Data Dictionary", "Usage Notes", "License", "Citations
   <PageBanner
     type="page"
     caption="Dataset"
-    title={ title }
+    title={ datasetTitle }
     description={ description }
-    metadata={ metadata }>
+  >
   </PageBanner>
 
   <main>
     <div class="container">
 
-      <EditionSelector></EditionSelector>
+      <!-- <EditionSelector></EditionSelector> -->
 
       <div class="layout">
 
@@ -45,22 +48,22 @@ const toc = ["Overview", "Data Dictionary", "Usage Notes", "License", "Citations
 
             <dl class="metadata-list">
               <dt>Release date</dt>
-              <dd>1 January 2024</dd>
+              <dd>{ metadata.releaseDate }</dd>
 
               <dt>Next release</dt>
-              <dd>2 January 2024</dd>
+              <dd>{ metadata.nextRelease }</dd>
 
               <dt>Contact</dt>
-              <dd>Gareth Lewis</dd>
+              <dd>{ metadata.contact }</dd>
 
               <dt>Version</dt>
-              <dd>1 of 1</dd>
+              <dd>{ metadata.version }</dd>
             </dl>
           </section>
 
           <section class="get-the-data">
             <h2 class="section-title">Get the data</h2>
-            <p>Download the data, released on 1 January 2024, in the following formats:</p>
+            <p>Download the data, released on { metadata.releaseDate }, in the following formats:</p>
 
             <div class="file-download-list">
               <FileDownload
