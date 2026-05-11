@@ -44,7 +44,7 @@ const toc = ["Overview", "Data Dictionary", "Usage Notes", "License", "Citations
         <div class="page-content">
           
           <section class="edition-metadata">
-            <h2 class="section-title">Edition title</h2>
+            <h2 class="section-title">{ editionTitle }</h2>
 
             <dl class="metadata-list">
               <dt>Release date</dt>
@@ -58,6 +58,9 @@ const toc = ["Overview", "Data Dictionary", "Usage Notes", "License", "Citations
 
               <dt>Version</dt>
               <dd>{ metadata.version }</dd>
+
+              <dt>Accreditation status</dt>
+              <dd>{ metadata.accreditationStatus }</dd>
             </dl>
           </section>
 
@@ -65,31 +68,15 @@ const toc = ["Overview", "Data Dictionary", "Usage Notes", "License", "Citations
             <h2 class="section-title">Get the data</h2>
             <p>Download the data, released on { metadata.releaseDate }, in the following formats:</p>
 
-            <div class="file-download-list">
+            { dataFiles.map((file) => (
               <FileDownload
-                filetype="XLSX"
-                filename="April-to-June-2025-edition.xlsx"
-                filedescription="Office Open XML file"
-                filesize="10MB"
-                fileUrl="#"
+                filename={ file.fileName }
+                filetype={ file.filetype }
+                filedescription={ file.description }
+                filesize={ file.filesize }
+                fileUrl={ file.downloadLink }
               />
-              
-              <FileDownload
-                filetype="TXT"
-                filename="April-to-June-2025-edition.txt"
-                filedescription="Unicode plain text file"
-                filesize="10MB"
-                fileUrl="#"
-              />
-              
-              <FileDownload
-                filetype="CSV"
-                filename="April-to-June-2025-edition.csv"
-                filedescription="Comma-separated values file"
-                filesize="10MB"
-                fileUrl="#"
-              />
-            </div>
+            ))}
           </section>
 
           <section class="important-notes-and-usage-information">
