@@ -13,6 +13,7 @@ const {
   editionTitle,
   metadata,
   dataFiles,
+  importantNotesAndUsageInformation,
   relatedContent,
   versionHistory,
   contactDetails,
@@ -44,7 +45,7 @@ const toc = ["Overview", "Data Dictionary", "Usage Notes", "License", "Citations
         <div class="page-content">
           
           <section class="edition-metadata">
-            <h2 class="section-title">{ editionTitle }</h2>
+            <h2 class="section-title">{ editionTitle } edition</h2>
 
             <dl class="metadata-list">
               <dt>Release date</dt>
@@ -79,83 +80,65 @@ const toc = ["Overview", "Data Dictionary", "Usage Notes", "License", "Citations
             ))}
           </section>
 
-          <section class="important-notes-and-usage-information">
-            <h2 class="section-title">Important notes and usage information</h2>
+          { importantNotesAndUsageInformation && (
+            <section class="important-notes-and-usage-information">
+              <h2 class="section-title">Important notes and usage information</h2>
 
-            <p>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec a diam lectus. Sed sit amet ipsum mauris. Maecenas congue ligula ac quam viverra nec consectetur ante hendrerit. Donec et mollis dolor. Praesent et diam eget libero egestas mattis sit amet vitae augue. Nam tincidunt congue enim, ut porta lorem lacinia consectetur.
-            </p>
-          </section>
+              <p>
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec a diam lectus. Sed sit amet ipsum mauris. Maecenas congue ligula ac quam viverra nec consectetur ante hendrerit. Donec et mollis dolor. Praesent et diam eget libero egestas mattis sit amet vitae augue. Nam tincidunt congue enim, ut porta lorem lacinia consectetur.
+              </p>
+            </section>
+          )}
 
-          <section class="related-content">
-            <h2 class="section-title">Related content</h2>
+          { relatedContent && (
+            <section class="related-content">
+              <h2 class="section-title">Related content</h2>
 
-            <div class="related-content-list">
+              <div class="related-content-list">
 
-              <DocumentList
-                title="Related document title"
-                link="#"
-                releaseDate="1 January 2024"
-                contentType="Data quality report"
-                description="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec a diam lectus. Sed sit amet ipsum mauris."
-              />
-              
-              <DocumentList
-                title="Related document title"
-                link="#"
-                releaseDate="1 January 2024"
-                contentType="Methodology article"
-                description="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec a diam lectus. Sed sit amet ipsum mauris."
-              />
-              
-              <DocumentList
-                title="Related document title"
-                link="#"
-                releaseDate="1 January 2024"
-                contentType="Data quality report"
-                description="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec a diam lectus. Sed sit amet ipsum mauris."
-              />
-            </div>
-          </section>
+                { relatedContent.map((content) => (
+                  <DocumentList
+                    title={ content.title }
+                    link={ content.url }
+                    releaseDate={ content.releaseDate }
+                    contentType={ content.contentType }
+                    description={ content.description }
+                  />
+                ))}
+              </div>
+            </section>
+          )}
 
-          <section class="version-history">
-            <h2 class="section-title">Version history</h2>
+          { versionHistory && (
+            <section class="version-history">
+              <h2 class="section-title">Version history</h2>
 
-            <table>
-              <thead>
-                <tr>
-                  <th>Version</th>
-                  <th>Release date</th>
-                  <th>Reason for update</th>
-                </tr>
-              </thead>
+              <table>
+                <thead>
+                  <tr>
+                    <th>Version</th>
+                    <th>Release date</th>
+                    <th>Reason for update</th>
+                  </tr>
+                </thead>
 
-              <tbody>
-                <tr>
-                  <td><a href="#">3</a></td>
-                  <td><a href="#">October 2025 09:30am</a></td>
-                  <td>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur rutrum augue vitae libero efficitur accumsan.</td>
-                </tr>
-
-                <tr>
-                  <td><a href="#">2</a></td>
-                  <td><a href="#">October 2025 09:30am</a></td>
-                  <td>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur rutrum augue vitae libero efficitur accumsan.</td>
-                </tr>
-
-                <tr>
-                  <td><a href="#">1</a></td>
-                  <td><a href="#">October 2025 09:30am</a></td>
-                  <td>Initial release</td>
-                </tr>
-              </tbody>
-            </table>
-          </section>
+                <tbody>
+                  { versionHistory.map((version) => (
+                    <tr>
+                      <td><a href="#">{ version.version }</a></td>
+                      <td><a href="#">{ version.releaseDate }</a></td>
+                      <td>{ version.releaseNotes }</td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </section>
+          )}
 
           <ContactDetails
-            team="Team name"
-            email="team@ons.gov.uk"
-            telephone="01234 567890"
+            team={ contactDetails.team }
+            email={ contactDetails.email }
+            telephone={ contactDetails.telephone }
           />
 
         </div>
