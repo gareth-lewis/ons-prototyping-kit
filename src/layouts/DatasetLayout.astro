@@ -6,6 +6,7 @@ import EditionSelector from "../components/EditionSelector.astro";
 import ContactDetails from "../components/ContactDetails.astro";
 import DocumentList from "../components/DocumentList.astro";
 import FileDownload from "../components/FileDownload.astro";
+import { rootCertificates } from "node:tls";
 
 const {
   datasetTitle,
@@ -19,7 +20,52 @@ const {
   contactDetails,
 } = Astro.props;
 
-const toc = ["Overview", "Data Dictionary", "Usage Notes", "License", "Citations"];
+const toc = [];
+
+toc.push({
+  text: "Edition information",
+  slug: "edition-information",
+});
+
+if (dataFiles?.length) {
+  toc.push({
+    text: "Get the data",
+    slug: "get-the-data",
+  });
+}
+
+toc.push({
+  text: "Quality and usage information",
+  slug: "quality-and-usage-information",
+});
+
+if (importantNotesAndUsageInformation) {
+  toc.push({
+    text: "Important notes and usage information",
+    slug: "important-notes-and-usage-information",
+  });
+}
+
+if (relatedContent?.length) {
+  toc.push({
+    text: "Related content",
+    slug: "related-content",
+  });
+}
+
+if (versionHistory?.length) {
+  toc.push({
+    text: "Version history",
+    slug: "version-history",
+  });
+}
+
+if (contactDetails) {
+  toc.push({
+    text: "Contact details",
+    slug: "contact-details",
+  });
+}
 ---
 
 <BaseLayout>
@@ -44,7 +90,7 @@ const toc = ["Overview", "Data Dictionary", "Usage Notes", "License", "Citations
 
         <div class="page-content">
           
-          <section class="edition-metadata">
+          <section class="edition-metadata" id="edition-information">
             <h2 class="section-title">{ editionTitle } edition</h2>
 
             <dl class="metadata-list">
@@ -65,7 +111,7 @@ const toc = ["Overview", "Data Dictionary", "Usage Notes", "License", "Citations
             </dl>
           </section>
 
-          <section class="get-the-data">
+          <section class="get-the-data" id="get-the-data">
             <h2 class="section-title">Get the data</h2>
             <p>Download the data, released on { metadata.releaseDate }, in the following formats:</p>
 
@@ -81,15 +127,15 @@ const toc = ["Overview", "Data Dictionary", "Usage Notes", "License", "Citations
           </section>
 
           { importantNotesAndUsageInformation && (
-            <section class="important-notes-and-usage-information">
+            <section class="important-notes-and-usage-information" id="important-notes-and-usage-information">
               <h2 class="section-title">Important notes and usage information</h2>
 
-              { importantNotesAndUsageInformation }
+              <p>{ importantNotesAndUsageInformation }</p>
             </section>
           )}
 
           { relatedContent && (
-            <section class="related-content">
+            <section class="related-content" id="related-content">
               <h2 class="section-title">Related content</h2>
 
               <div class="related-content-list">
@@ -108,7 +154,7 @@ const toc = ["Overview", "Data Dictionary", "Usage Notes", "License", "Citations
           )}
 
           { versionHistory && (
-            <section class="version-history">
+            <section class="version-history" id="version-history">
               <h2 class="section-title">Version history</h2>
 
               <table>
@@ -134,9 +180,9 @@ const toc = ["Overview", "Data Dictionary", "Usage Notes", "License", "Citations
           )}
 
           <ContactDetails
-            team={ contactDetails.team }
+            team={ contactDetails.name }
             email={ contactDetails.email }
-            telephone={ contactDetails.telephone }
+            telephone={ contactDetails.telephoneNumber }
           />
 
         </div>
